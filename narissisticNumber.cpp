@@ -4,7 +4,7 @@ using namespace std;
 int numDigit(int num){
     int rem,i=0;
     do{
-        rem=num%10;
+        rem=num%10;//aaaa
         num/=10;
         i++;   
     }while(num!=0);
