@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+
+class Total;
+class Internal;
+class External;
+
+class Total {
+    float marks[6];
+public:
+    void display();
+    void total(Internal I, External E);
+};
+
+class Internal {
+    float marks[6];
+public:
+    void input();
+    friend void Total::total(Internal I, External E);
+};
+
+class External {
+    float marks[6];
+public:
+    void input();
+    friend void Total::total(Internal I, External E);
+};
+
+void External::input() {
+    for(int i = 0; i < 6; i++) {
+        cin >> marks[i];
+    }
+}
+
+void Internal::input() {
+    for(int i = 0; i < 6; i++) {
+        cin >> marks[i];
+    }
+}
+
+void Total::display() {
+    for(int i = 0; i < 6; i++) {
+        cout << marks[i] << " ";
+    }
+}
+
+void Total::total(Internal I, External E) {
+    for(int i = 0; i < 6; i++) {
+        marks[i] = I.marks[i] + (E.marks[i] / 2);
+    }
+}
+
+int main() {
+    Total t;
+    Internal i;
+    External e;
+
+    cout << "Enter Internal Marks: ";
+    i.input();
+
+    cout << "Enter External Marks: ";
+    e.input();
+
+    t.total(i, e);
+
+    cout << "Total Marks: ";
+    t.display();
+
+    return 0;
+}
